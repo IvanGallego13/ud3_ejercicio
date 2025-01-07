@@ -1,3 +1,14 @@
+IMPORTANTE: 
+Esta es mi conexion a la base de datos(.env):
+DB_CONNECTION=mariadb
+DB_HOST=127.0.0.1
+DB_PORT=3307
+DB_DATABASE=gestion_notas
+DB_USERNAME=root
+DB_PASSWORD=m1_s3cr3t
+
+Y tambien mi container_name es mariadb-server1 y el puerto "3307:3306"
+
 Ejercicio 4 (1p)
 
 Revisa los ficheros de la carpeta database/migrations y contesta a las siguientes preguntas:
@@ -98,6 +109,7 @@ Ejercicio 8 (1p)
   +2.Editar la migración: añadir el campo apellido en up() y eliminarlo en down().
   +3.Ejecutar la migración: php artisan migrate
   +4.Verificar la tabla: DESCRIBE alumnos; en MariaDB.
+  
 Ejercicio 9 (1p)
 
 Database changed
