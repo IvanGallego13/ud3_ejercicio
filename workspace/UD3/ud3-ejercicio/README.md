@@ -1,66 +1,160 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+IMPORTANTE: 
+Esta es mi conexion a la base de datos(.env):
+DB_CONNECTION=mariadb
+DB_HOST=127.0.0.1
+DB_PORT=3307
+DB_DATABASE=gestion_notas
+DB_USERNAME=root
+DB_PASSWORD=m1_s3cr3t
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Y tambien mi container_name es mariadb-server1 y el puerto "3307:3306"
 
-## About Laravel
+Ejercicio 4 (1p)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Revisa los ficheros de la carpeta database/migrations y contesta a las siguientes preguntas:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-¿Qué crees que hace el método create de la clase Schema?
+  +El metodo create se utiliza para crear una nueva tabla en la base de datos.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+-¿Qué crees que hace $table->string('email')->primary();?
+  +Esta linea define la columna de email de tipo string en la tabla, y la pone como clave primaria.
+  
+-¿Cuantas tablas hay definidas? Indica el nombre de cada tabla
+  +users
+  +password_reset_tokens
+  +sessions
+  +cache
+  +cache_locks
+  +jobs
+  +job_batches
+  +failed_jobs
 
-## Learning Laravel
+Ejercicio 5 (1p)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+-¿Cuántas tablas aparecen?
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+MariaDB [test1]> SHOW TABLES;
++-----------------------+
+| Tables_in_test1       |
++-----------------------+
+| cache                 |
+| cache_locks           |
+| failed_jobs           |
+| job_batches           |
+| jobs                  |
+| migrations            |
+| password_reset_tokens |
+| sessions              |
+| users                 |
++-----------------------+
+9 rows in set (0.001 sec)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+Ejercicio 6 (1p)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Indica qué realiza los siguientes comandos:
 
-### Premium Partners
+-php artisan migrate:  INFO  Nothing to migrate.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+-php artisan migrate:status: Migration name .......................................... Batch / Status  
+  0001_01_01_000000_create_users_table ........................... [1] Ran  
+  0001_01_01_000001_create_cache_table ........................... [2] Ran  
+  0001_01_01_000002_create_jobs_table ............................ [2] Ran 
 
-## Contributing
+-php artisan migrate:rollback:    INFO  Rolling back migrations.  
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+  0001_01_01_000002_create_jobs_table ....................... 55.68ms DONE
+  0001_01_01_000001_create_cache_table ...................... 33.48ms DONE
 
-## Code of Conduct
+-php artisan migrate:reset: INFO  Rolling back migrations.  
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+  0001_01_01_000000_create_users_table ...................... 58.11ms DONE
 
-## Security Vulnerabilities
+-php artisan migrate:refresh: INFO  Nothing to rollback.  
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+   INFO  Running migrations.  
 
-## License
+  0001_01_01_000000_create_users_table ..................... 151.01ms DONE
+  0001_01_01_000001_create_cache_table ...................... 27.67ms DONE
+  0001_01_01_000002_create_jobs_table ...................... 145.04ms DONE
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+-php artisan make:migration: What should the migration be named? ─────────────────────────┐
+ │ E.g. create_flights_table  
+
+-php artisan migrate --seed: INFO  Nothing to migrate.  
+
+   INFO  Seeding database. 
+
+Ejercicio 7 (1p)
+
+MariaDB [test2]> SHOW TABLES;
++-----------------------+
+| Tables_in_test2       |
++-----------------------+
+| alumnos               |
+| cache                 |
+| cache_locks           |
+| failed_jobs           |
+| job_batches           |
+| jobs                  |
+| migrations            |
+| password_reset_tokens |
+| sessions              |
+| users                 |
++-----------------------+
+10 rows in set (0.000 sec)
+
+Ejercicio 8 (1p)
+  +1.Crear la migración: php artisan make:migration add_apellido_to_alumnos_table --table=alumnos
+  +2.Editar la migración: añadir el campo apellido en up() y eliminarlo en down().
+  +3.Ejecutar la migración: php artisan migrate
+  +4.Verificar la tabla: DESCRIBE alumnos; en MariaDB.
+  
+Ejercicio 9 (1p)
+
+Database changed
+MariaDB [test2]> SELECT * FROM alumnos;
++----+------------------+----------------------------+---------------------+---------------------+
+| id | nombre           | email                      | created_at          | updated_at          |
++----+------------------+----------------------------+---------------------+---------------------+
+|  1 | Juan Pérez       | juan.perez@example.com     | 2025-01-07 16:21:00 | 2025-01-07 16:21:00 |
+|  2 | María González   | maria.gonzalez@example.com | 2025-01-07 16:21:00 | 2025-01-07 16:21:00 |
+|  3 | Carlos López     | carlos.lopez@example.com   | 2025-01-07 16:21:00 | 2025-01-07 16:21:00 |
++----+------------------+----------------------------+---------------------+---------------------+
+3 rows in set (0.001 sec)
+
+MariaDB [test2]> exit
+
+
+Ejercicio 10 (1p)
+
+Database changed
+MariaDB [gestion_notas]> 
+MariaDB [gestion_notas]> SELECT * FROM alumnos;
++----+------------------+----------------------------+---------------------+---------------------+
+| id | nombre           | email                      | created_at          | updated_at          |
++----+------------------+----------------------------+---------------------+---------------------+
+|  1 | Juan Pérez       | juan.perez@example.com     | 2025-01-07 16:38:59 | 2025-01-07 16:38:59 |
+|  2 | María González   | maria.gonzalez@example.com | 2025-01-07 16:38:59 | 2025-01-07 16:38:59 |
++----+------------------+----------------------------+---------------------+---------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [gestion_notas]> SELECT * FROM asignaturas;
++----+------------------+-----------------------------------+---------------------+---------------------+
+| id | nombre           | descripcion                       | created_at          | updated_at          |
++----+------------------+-----------------------------------+---------------------+---------------------+
+|  1 | Matemáticas      | Asignatura de matemáticas         | 2025-01-07 16:38:59 | 2025-01-07 16:38:59 |
+|  2 | Lengua Española  | Asignatura de lengua y literatura | 2025-01-07 16:38:59 | 2025-01-07 16:38:59 |
++----+------------------+-----------------------------------+---------------------+---------------------+
+2 rows in set (0.000 sec)
+
+MariaDB [gestion_notas]> SELECT * FROM notas;
++----+-----------+---------------+------+---------------------+---------------------+
+| id | alumno_id | asignatura_id | nota | created_at          | updated_at          |
++----+-----------+---------------+------+---------------------+---------------------+
+|  1 |         1 |             1 | 8.50 | 2025-01-07 16:38:59 | 2025-01-07 16:38:59 |
+|  2 |         2 |             2 | 9.00 | 2025-01-07 16:38:59 | 2025-01-07 16:38:59 |
++----+-----------+---------------+------+---------------------+---------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [gestion_notas]> exit
