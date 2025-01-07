@@ -3,10 +3,20 @@ Ejercicio 4 (1p)
 Revisa los ficheros de la carpeta database/migrations y contesta a las siguientes preguntas:
 
 -¿Qué crees que hace el método create de la clase Schema?
+  +El metodo create se utiliza para crear una nueva tabla en la base de datos.
 
 -¿Qué crees que hace $table->string('email')->primary();?
-
+  +Esta linea define la columna de email de tipo string en la tabla, y la pone como clave primaria.
+  
 -¿Cuantas tablas hay definidas? Indica el nombre de cada tabla
+  +users
+  +password_reset_tokens
+  +sessions
+  +cache
+  +cache_locks
+  +jobs
+  +job_batches
+  +failed_jobs
 
 Ejercicio 5 (1p)
 
@@ -84,7 +94,10 @@ MariaDB [test2]> SHOW TABLES;
 10 rows in set (0.000 sec)
 
 Ejercicio 8 (1p)
-
+  +1.Crear la migración: php artisan make:migration add_apellido_to_alumnos_table --table=alumnos
+  +2.Editar la migración: añadir el campo apellido en up() y eliminarlo en down().
+  +3.Ejecutar la migración: php artisan migrate
+  +4.Verificar la tabla: DESCRIBE alumnos; en MariaDB.
 Ejercicio 9 (1p)
 
 Database changed
