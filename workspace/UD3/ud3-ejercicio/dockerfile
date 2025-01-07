@@ -1,0 +1,9 @@
+# Usar la imagen oficial de MariaDB
+FROM mariadb:latest
+
+# Configurar las variables de entorno para MariaDB
+ENV MYSQL_ROOT_PASSWORD=m1_s3cr3t
+ENV MYSQL_DATABASE=test1
+
+# Exponer el puerto 3306
+EXPOSE 3306
