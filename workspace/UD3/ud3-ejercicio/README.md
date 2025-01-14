@@ -1,4 +1,89 @@
-IMPORTANTE: 
+# Way of Working(3.2Modelos en laravel):
+### 1. Clonar el repositorio:
+-git clone https://github.com/IvanGallego13/ud3_ejercicio.git
+-cd ud3_ejercicio
+
+### 2. Configurar Laravel:
+
+-composer install -n --prefer-dist
+-cp .env.example .env
+
+Edita el archivo .env para configurar la conexión con la base de datos:
+
+-DB_CONNECTION=mariadb
+DB_HOST=127.0.0.1
+DB_PORT=3307(si te dice que esta ocupado puedes cambiarlo a cualquier otro)
+DB_DATABASE=gestion_notas
+DB_USERNAME=root
+DB_PASSWORD=m1_s3cr3t
+
+-php artisan key:generate
+
+### 3. Crear el contenedor de MariaDB:
+
+-docker build -t mariadb-server .
+-docker run -d --name mariadb-server -p 3307:3306 -e MYSQL_ROOT_PASSWORD=m1_s3cr3t mariadb-server(recordar que se puedes tener otro contenedor con el mismo nombre o con el mismo puerto, asegurate de cambiarlo tambien en el .env)
+
+Comprueba que el contenedor esté corriendo:
+
+-docker ps -a
+
+Accede al contenedor para crear la base de datos inicial:
+
+-docker exec -it mariadb-server mariadb -u root -p
+
+Introducir contraseña: m1_s3cr3t
+
+-CREATE DATABASE gestion_notas;
+
+### 4. Ejecutar migraciones
+
+-php artisan config:clear
+
+-php artisan migrate
+
+Verifica las tablas creadas:
+
+docker exec -it mariadb-server mariadb -u root -p
+
+Introducir contraseña: m1_s3cr3t
+
+USE gestion_notas;
+
+SHOW TABLES;
+
+### 5. Añadir datos con Seeders:
+
+-php artisan db:seed --class=AsignaturasTableSeeder
+
+-php artisan db:seed --class=AlumnosTableSeeder
+
+-php artisan db:seed --class=NotasTableSeeder
+
+(PARA MIGRAR TODO HACER: php artisan migrate --seed)
+
+Verifica los datos insertados en la base de datos:
+
+docker exec -it mariadb-server mariadb -u root -p
+
+Introducir contraseña: m1_s3cr3t
+
+USE gestion_notas;
+
+SELECT * FROM alumnos;
+
+-Prueba esto para ver si estan las routas de api bien: php artisan route:list --verbose
+
+
+### 6. Desplegar el entorno de desarrollo, levanta el servidor de desarrollo de Laravel:
+
+-php artisan serve
+
+(Accede a la aplicación desde el navegador en http://127.0.0.1:8000.)
+
+
+
+## IMPORTANTE:(3.1 Introduccion a Eloquent)
 Esta es mi conexion a la base de datos(.env):
 DB_CONNECTION=mariadb
 DB_HOST=127.0.0.1
